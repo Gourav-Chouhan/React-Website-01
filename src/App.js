@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./Components/Header";
+import AfterLogin from "./pages/afterLogin";
+import FrontPage from "./pages/frontPage";
+import Login from "./pages/login";
+
+const { React, useState } = require("react");
+const { BrowserRouter, Routes, Route } = require("react-router-dom");
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [buttonContent, setButtonContent] = useState("login");
+
+	return (
+		<BrowserRouter>
+			<Header
+				buttonContent={buttonContent}
+				setButtonContent={setButtonContent}
+			/>
+			<Routes>
+				<Route path="/" element={<FrontPage />} />
+				<Route path="/login" element={<Login />} />
+				<Route path="/afterLogin" element={<AfterLogin />} />
+			</Routes>
+		</BrowserRouter>
+	);
 }
 
 export default App;
